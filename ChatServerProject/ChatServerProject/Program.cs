@@ -25,14 +25,20 @@ namespace ChatServerProject
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("conexion establecida");
-                        Console.Write("S: Hola Mundo Cliente!");
-                        servidor.Escribir("Hola Mundo Cliente!");
-                        string mensaje = servidor.Leer();
-                        Console.WriteLine("C: {0}", mensaje);
+                        string mensaje = "";
+                        while(mensaje.ToLower() != "chao")
+                        {
+                            mensaje = servidor.Leer();
+                            Console.WriteLine(" C:{0}", mensaje);
+                            if (mensaje.ToLower() !="chao")
+                            {
+                                Console.WriteLine("Digame lo que quiere decir guruguru");
+                                mensaje = Console.ReadLine().Trim();
+                                Console.WriteLine(" S: {0}", mensaje);
+                                servidor.Escribir(mensaje);
+                            }
+                        } 
                         servidor.CerrarConexion();
-                        
-
-
                     }
                 }
             }else
